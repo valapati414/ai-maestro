@@ -740,6 +740,7 @@ export async function createSession(params: CreateSessionParams): Promise<Servic
     else if (selectedProgram.includes('gemini')) startCommand = 'gemini'
     else if (selectedProgram.includes('opencode')) startCommand = 'opencode'
     else if (selectedProgram.includes('openclaw')) startCommand = 'openclaw'
+    else if (selectedProgram.includes('hermes')) startCommand = 'hermes'
     else startCommand = 'claude'
 
     if (programArgs && typeof programArgs === 'string') {

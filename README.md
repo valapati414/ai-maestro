@@ -1,291 +1,91 @@
-<div align="center">
-
-<img src="./docs/logo-constellation.svg" alt="Hermes Maestro Logo" width="120"/>
-
 # Hermes Maestro
 
-This project is a hard fork of AI Maestro (https://github.com/23blocks-OS/ai-maestro) by 23blocks, originally MIT-licensed. See LICENSE.upstream for the original license.
+> A fork of [ai-maestro](https://github.com/23blocks-OS/ai-maestro) by [23blocks](https://github.com/23blocks-OS) with autonomous task orchestration for [Hermes](https://hermes-agent.nousresearch.com/) workers.
 
-*I was running 35 AI agents across multiple terminals and became the human mailman between them. So I built AI Maestro.*
+**License:** MIT (see [LICENSE](./LICENSE)). Upstream license at [LICENSE.upstream](./LICENSE.upstream).
 
-**The OS for AI-first organizations — orchestrate any AI agent with persistent memory, agent-to-agent messaging, and multi-machine support.**
+## What This Fork Adds
 
-[![Version](https://img.shields.io/badge/version-0.29.16-blue)](https://github.com/valapati414/ai-maestro/releases)
-[![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20Linux%20%7C%20Windows%20(WSL2)-lightgrey)](https://github.com/valapati414/ai-maestro)
-[![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
-[![GitHub Stars](https://img.shields.io/github/stars/valapati414/ai-maestro?style=social)](https://github.com/valapati414/ai-maestro)
-
-![Hermes Maestro Dashboard](./docs/images/aiteam-web.png)
-
-[Quick Start](#-quick-start) · [Features](#-features) · [Documentation](#-documentation) · [Contributing](./CONTRIBUTING.md)
-
-</div>
-
----
-
-## The Story
-
-I gave an AI agent a real task — not autocomplete, a real engineering problem. It checked the code, read the logs, queried the database, and came back with the answer. That was the moment. *This thing can actually work.*
-
-Within a week I was running 35 agents across terminals. They were productive, but they couldn't talk to each other. I became the human message bus — copying context from one terminal, pasting into another. I was the bottleneck in my own AI team.
-
-**So I built AI Maestro** — one dashboard to see every agent, on every machine, with persistent memory and direct agent-to-agent communication. Today I run 80+ agents across multiple computers, building real companies with them every day.
-
-**What makes this different:**
-- **Works with any AI agent** — Claude Code, Codex, Aider, Cursor, OpenClaw, Hermes, Droid, or any terminal-based agent. We don't lock you in.
-- **Multi-machine from day one** — Peer mesh network with no central server. Nobody else does this.
-- **Agents that communicate** — The Agent Messaging Protocol (AMP) lets agents coordinate directly. You orchestrate, they collaborate.
-
----
+- **Autonomous Orchestration** — Automatically dispatch kanban tasks to Hermes agent workers, detect completion via tmux markers, and manage the full task lifecycle.
+- **HMP/1 Protocol** — A simple wire protocol (`###HMP/1 DONE <uuid> <summary>`) for agents to signal task completion back to Maestro.
+- **Telegram Intake** — Create tasks via Telegram (`/task` and `/urgent` commands) from your phone.
+- **Event System** — Hook into orchestration events (dispatch, completion, blocked, stale) for custom integrations.
 
 ## Quick Start
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/valapati414/ai-maestro/main/scripts/remote-install.sh | sh
-```
+### Prerequisites
 
-This installs everything you need:
-- Hermes Maestro dashboard and service
-- Agent messaging system (AMP)
-- Claude Code plugin with 5 skills and 32 CLI scripts
+- Node.js 22+
+- [Hermes](https://hermes-agent.nousresearch.com/) 0.14+ installed on worker hosts
+- tmux 3.5+
 
-**Time:** 5-10 minutes · **Requires:** Node.js 18+, tmux
-
-<details>
-<summary>Windows (WSL2) / Linux notes</summary>
-
-**Windows:** Install WSL2 first, then run the curl command inside Ubuntu:
-
-```powershell
-wsl --install
-```
-
-[Full Windows guide](./docs/WINDOWS-INSTALLATION.md)
-
-**Linux:** Ensure build tools are installed: `sudo apt install tmux build-essential`
-</details>
-
-<details>
-<summary>Manual install</summary>
+### Install
 
 ```bash
 git clone https://github.com/valapati414/ai-maestro.git
 cd ai-maestro
 yarn install
+cp .env.example .env
+# Edit .env with your configuration
 yarn dev
 ```
 
-See [QUICKSTART.md](./docs/QUICKSTART.md) for detailed setup options.
-</details>
+### Enable Orchestration
 
-Dashboard opens at `http://localhost:23000`
+1. Create a team with Hermes workers in the Maestro UI
+2. Add an `orchestration` config to the team:
 
----
-
-## Features
-
-Every feature was born from running a real AI-first organization. We built them in the order we needed them.
-
-### One Dashboard
-
-*I had 35 terminals and couldn't tell which was which.*
-
-See and manage all your AI agents in one place. Create agents from the UI with a guided wizard, organize them with smart naming (`project-backend-api` becomes a 3-level tree with auto-coloring), and switch between any agent with a click. Four deployment modes: **tmux** (local), **Docker** (containerized), **AWS EC2** (dedicated instance), and **AWS ECS Fargate** (serverless). Auto-discovers tmux sessions, Docker containers, cloud deployments, and standalone agents.
-
-### Any Machine
-
-*My Mac Mini was sitting there idle. What if I ran agents on that too?*
-
-A peer mesh network where every machine is equal. Add a computer, it joins the mesh. Every agent on every machine, visible from one dashboard. Use each machine for what it's best at — Mac for iOS builds, Linux for Docker, cloud for heavy compute. **No central server required.**
-
-### Agent Messaging
-
-*I was the mailman — copying messages between agents because they couldn't talk to each other.*
-
-The [Agent Messaging Protocol (AMP)](https://agentmessaging.org) gives your agents email-like communication. Priority levels, message types, cryptographic signatures, and push notifications. Tell your agent *"send a message to backend about the deployment"* — it just works. Agents coordinate directly while you manage the big picture.
-
-**Before AMP:** You copy research from one terminal, paste into another, repeat 50 times a day.
-**With AMP:** *"Research agent, send your findings to the writing agent."* Done.
-
-### Gateways
-
-*A friend in Singapore wanted his agents to talk to mine. But I didn't want to give him access to my network.*
-
-Connect your AI agents to [Slack](https://github.com/23blocks-OS/aimaestro-gateways), Discord, Email, and WhatsApp through organizational gateways. Smart routing (`@AIM:agent-name`), thread-aware responses, and content security with 34 prompt injection patterns detected at the gateway — before any agent sees the message.
-
-### Persistent Memory
-
-*Every morning, my agents woke up with amnesia.*
-
-Three layers of intelligence that grow over time: **Memory** (agents remember past conversations and decisions), **Code Graph** (interactive visualization of your entire codebase with delta indexing), and **Documentation** (auto-generated, searchable docs from your code). Agents get smarter the longer they work with you.
-
-### Work Coordination
-
-*Talking isn't working. I needed agents to coordinate on actual deliverables.*
-
-Assemble agents into teams, run meetings in split-pane war rooms, and track tasks on a full Kanban board with drag-and-drop, dependencies, and 5 status columns. Cross-machine teams work seamlessly. This is project management for your AI workforce.
-
-### Agent Identity
-
-*At 80 agents, they all looked the same.*
-
-Custom avatars, personality profiles, and visual presence for every agent. When an agent has a face and a role, you instinctively assign it the right work — just like a real team.
-
-### Agent Deployment
-
-*One agent on my laptop. Another on EC2. A third on Fargate. All in the same dashboard.*
-
-Four ways to run agents, each for a different need:
-
-|| Mode | What | Best For ||
-||------|------|----------||
-|| **tmux** | Direct terminal sessions on your machine | Local development, zero setup ||
-|| **Docker** | Containerized agents with resource limits | Isolation, reproducibility, multi-project ||
-|| **AWS EC2** | Dedicated Graviton instance with native install, Nginx + SSL | Always-on agents, SSH access, persistent workloads ||
-|| **AWS ECS Fargate** | Serverless containers, auto-built Docker image | Burst scaling, zero maintenance, pay-per-use ||
-
-Cloud agents are Terraform-managed. EC2 installs Node.js, tmux, and AI CLIs directly on ARM64 hardware (no Docker overhead). ECS auto-builds your Docker image, pushes to ECR, and runs on Fargate. Both deploy with one command from the dashboard or CLI.
-
-```bash
-# EC2: dedicated instance with SSL
-aimaestro-agent.sh create my-api --ec2 \
-  --domain api.example.com --ssl-email admin@example.com --key-name my-key
-
-# ECS Fargate: serverless (auto-builds image)
-aimaestro-agent.sh create worker --ecs
+```json
+{
+  "orchestration": {
+    "enabled": true,
+    "workerSelection": "round_robin",
+    "pollIntervalSeconds": 10,
+    "staleThresholdMinutes": 30,
+    "workers": [
+      { "agentId": "your-hermes-agent-id" }
+    ]
+  }
+}
 ```
 
----
+3. Or use the API: `POST /api/teams/<id>/orchestration`
 
-## Meet Lola — Your First Hire
+### Enable Telegram (Optional)
 
-Every AI-first organization starts with one agent. **Lola** is yours — a batteries-included Chief of Staff framework built for Hermes Maestro. She handles email triage, semantic memory, task management, and content security out of the box. Install the platform, deploy Lola, and you have your first employee on day one.
-
-```bash
-# Clone and deploy Lola on Hermes Maestro
-git clone https://github.com/23blocks-OS/lolabot.git
-cd lolabot && ./setup.sh
+Set environment variables:
+```
+TELEGRAM_ENABLED=1
+TELEGRAM_BOT_TOKEN=<from @BotFather>
+TELEGRAM_AUTHORIZED_USERS=12345,67890
+TELEGRAM_DEFAULT_TEAM_ID=<team-uuid>
 ```
 
-[Learn more about Lola →](https://github.com/23blocks-OS/lolabot)
+Then send `/task <subject>` or `/urgent <subject>` to your bot.
 
----
+## Status
 
-## The Agent Ecosystem
+**v1** — Hermes-only, self-hosted, single-operator use case.
 
-Every agent is built from four dimensions:
-
-|| | Dimension | What | Where ||
-||-|-----------|------|-------||
-|| **WHO** | Personality | Domain expertise, workflows, deliverables | [Agent Library](https://github.com/msitarzewski/agency-agents) (150+) ||
-|| **HOW** | Capabilities | Skills, scripts, CLI tools | [Plugin Builder](https://github.com/23blocks-OS/ai-maestro-plugins) ||
-|| **TRUST** | Identity | Cryptographic keys, OAuth tokens | [AID](https://agentids.org) ||
-|| **TALK** | Communication | Agent-to-agent messaging | [AMP](https://agentmessaging.org) ||
-
-Hermes Maestro is the stage. Pick personalities, give them skills, and run them from one dashboard.
-
-[Read the full ecosystem guide →](./docs/ECOSYSTEM.md)
-
----
-
-## Who Is This For
-
-**Founders building AI-first organizations.** You're the CEO, your agents are the team. Solo operators, agency owners, and anyone running a business where AI agents do the work and you drive the strategy. Start with Lola, add specialists, scale your AI workforce.
-
-**Developers running multiple AI agents.** If you have 3+ agents and you're switching between terminals, losing context, and playing messenger — this is for you. Works with Claude Code, Codex, Aider, Cursor, or any terminal-based AI.
-
-**Teams coordinating AI-assisted work.** Multiple developers, multiple agents, multiple machines. One dashboard. Agent-to-agent messaging replaces you as the bottleneck.
-
-**Creators and operators** who want to connect AI agents to the outside world through Slack, Discord, or Email — without exposing their infrastructure.
-
----
-
-<details>
-<summary><b>Screenshots</b></summary>
-
-<div align="center">
-<img src="./docs/images/aimaestro-mobile.png" alt="Mobile View" width="280"/>
-<img src="./docs/images/aimaestro-sidebar.png" alt="Sidebar" width="280"/>
-</div>
-
-**Code Graph** — Interactive codebase visualization
-
-![Code Graph](./docs/images/code_graph01.png)
-
-**Agent Inbox** — Direct agent-to-agent messaging
-
-![Agent Messaging](./docs/images/agent-inbox.png)
-
-</details>
-
----
+Only Hermes agents are supported as workers. Multi-agent support (Claude, Codex, etc.) is planned for a future version. See [docs/OTHER_AGENTS.md](./docs/OTHER_AGENTS.md).
 
 ## Documentation
 
-**New here?**
-- [Quick Start Guide](./docs/QUICKSTART.md) — Get up and running
-- [Core Concepts](./docs/CONCEPTS.md) — Understand how it works
-- [Use Cases](./docs/USE-CASES.md) — Real examples of what people build
+- [ORCHESTRATION.md](./docs/ORCHESTRATION.md) — Operator guide for autonomous dispatch
+- [HERMES_PROTOCOL.md](./docs/HERMES_PROTOCOL.md) — HMP/1 wire protocol specification
+- [OTHER_AGENTS.md](./docs/OTHER_AGENTS.md) — Future multi-agent support notes
+- [VALIDATION_ANALYSIS.md](./validation/VALIDATION_ANALYSIS.md) — Empirical Hermes validation results
 
-**Going deeper:**
-- [Multi-Machine Setup](./docs/SETUP-TUTORIAL.md) · [Network Access](./docs/NETWORK-ACCESS.md)
-- [Cloud Deployment (AWS)](./docs/cloud-aws.html) · [Docker Agents](./docs/docker-local.html)
-- [Agent Messaging Guide](./docs/AGENT-MESSAGING-GUIDE.md) · [Architecture](./docs/AGENT-COMMUNICATION-ARCHITECTURE.md)
-- [Intelligence Guide](./docs/AGENT-INTELLIGENCE.md) · [Code Graph](./docs/images/code_graph01.png)
-- [Operations Guide](./docs/OPERATIONS-GUIDE.md)
+## Development
 
-**Troubleshooting:**
-- [Common Issues](./docs/TROUBLESHOOTING.md) · [Security](./SECURITY.md) · [Windows Installation](./docs/WINDOWS-INSTALLATION.md)
+```bash
+yarn dev          # Start development server
+yarn test         # Run all tests (865+ tests)
+yarn lint         # Lint code
+yarn build        # Production build
+```
 
-**Extending:**
-- [Plugin Development](./plugin/README.md) · [API Reference](./docs/AGENT-COMMUNICATION-ARCHITECTURE.md)
+## Upstream
 
----
-
-## What's Next
-
-- Agent search and filtering across the entire mesh
-- Agent playback — time-travel through agent sessions
-- Performance analytics dashboard
-
-See the full [roadmap](https://github.com/valapati414/ai-maestro/issues) and [join the discussion](https://github.com/valapati414/ai-maestro/discussions).
-
----
-
-## Contributing
-
-We love contributions. See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
-
-- [Report a bug](https://github.com/valapati414/ai-maestro/issues)
-- [Request a feature](https://github.com/valapati414/ai-maestro/issues/new?labels=enhancement)
-
-<details>
-<summary><b>Acknowledgments</b></summary>
-
-This project is a hard fork of AI Maestro (https://github.com/23blocks-OS/ai-maestro) by 23blocks, originally MIT-licensed.
-
-Built with [Next.js](https://nextjs.org/), [xterm.js](https://xtermjs.org/), [CozoDB](https://www.cozodb.org/), [ts-morph](https://ts-morph.com/), [tmux](https://github.com/tmux/tmux), and [Claude Code](https://claude.ai).
-
-</details>
-
----
-
-## License
-
-MIT — see [LICENSE](./LICENSE). Free for any purpose, including commercial.
-
----
-
-<div align="center">
-
-**Made with love in Boulder (USA), Roma (Italy), and many other cool places**
-
-[Juan Pelaez](https://x.com/jkpelaez) · [23blocks](https://23blocks.com)
-
-*Forked and maintained as Hermes Maestro by [Prasad Alapati](https://github.com/valapati414)*
-
-*Built by AI Agents with Humans in the driver seat — for AI-first organizations, AI-enabled humans, and autonomous agents*
-
-[Star us on GitHub](https://github.com/valapati414/ai-maestro)
-
-</div>
+- Original: [23blocks-OS/ai-maestro](https://github.com/23blocks-OS/ai-maestro)
+- Fork maintained by [Prasad Alapati](https://github.com/valapati414)

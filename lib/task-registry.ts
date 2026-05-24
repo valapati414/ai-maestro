@@ -115,6 +115,13 @@ export function createTask(data: {
 
   tasks.push(task)
   saveTasks(data.teamId, tasks)
+
+  // Notify orchestration service (defensive — never throws)
+  try {
+    const { orchestrationService } = require('@/services/orchestration-service')
+    orchestrationService.onTaskChanged(data.teamId, task.id, 'create')
+  } catch { /* orchestration not available — ignore */ }
+
   return task
 }
 
@@ -172,6 +179,13 @@ export function updateTask(
   }
 
   saveTasks(teamId, tasks)
+
+  // Notify orchestration service (defensive — never throws)
+  try {
+    const { orchestrationService } = require('@/services/orchestration-service')
+    orchestrationService.onTaskChanged(teamId, taskId, 'update')
+  } catch { /* orchestration not available — ignore */ }
+
   return { task: tasks[index], unblocked }
 }
 
@@ -189,6 +203,13 @@ export function deleteTask(teamId: string, taskId: string): boolean {
 
   if (filtered.length === tasks.length) return false
   saveTasks(teamId, filtered)
+
+  // Notify orchestration service (defensive — never throws)
+  try {
+    const { orchestrationService } = require('@/services/orchestration-service')
+    orchestrationService.onTaskChanged(teamId, taskId, 'delete')
+  } catch { /* orchestration not available — ignore */ }
+
   return true
 }
 

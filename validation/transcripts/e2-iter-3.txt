@@ -1,0 +1,97 @@
+hermes
+prasad@debroy:~/ai-maestro$ hermes
+
+██╗  ██╗███████╗██████╗ ███╗   ███╗███████╗███████╗       █████╗  ██████╗ ███████╗███╗   ██╗████████╗
+██║  ██║██╔════╝██╔══██╗████╗ ████║██╔════╝██╔════╝      ██╔══██╗██╔════╝ ██╔════╝████╗  ██║╚══██╔══╝
+███████║█████╗  ██████╔╝██╔████╔██║█████╗  ███████╗█████╗███████║██║  ███╗█████╗  ██╔██╗ ██║   ██║
+██╔══██║██╔══╝  ██╔══██╗██║╚██╔╝██║██╔══╝  ╚════██║╚════╝██╔══██║██║   ██║██╔══╝  ██║╚██╗██║   ██║
+██║  ██║███████╗██║  ██║██║ ╚═╝ ██║███████╗███████║      ██║  ██║╚██████╔╝███████╗██║ ╚████║   ██║
+╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝╚══════╝      ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═══╝   ╚═╝
+
+╭──────────────────────────────────────────────────────────────────────── Hermes Agent v0.14.0 (2026.5.16) · upstream 186bf25c ────────────────────────────────────────────────────────────────────────╮
+│                                   Available Tools                                                                                                                                                    │
+│  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⡀⠀⣀⣀⠀⢀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀   browser: browser_back, browser_click, ...                                                                                                                          │
+│  ⠀⠀⠀⠀⠀⠀⢀⣠⣴⣾⣿⣿⣇⠸⣿⣿⠇⣸⣿⣿⣷⣦⣄⡀⠀⠀⠀⠀⠀⠀   browser-cdp: browser_cdp, browser_dialog                                                                                                                           │
+│  ⠀⢀⣠⣴⣶⠿⠋⣩⡿⣿⡿⠻⣿⡇⢠⡄⢸⣿⠟⢿⣿⢿⣍⠙⠿⣶⣦⣄⡀⠀   clarify: clarify                                                                                                                                                   │
+│  ⠀⠀⠉⠉⠁⠶⠟⠋⠀⠉⠀⢀⣈⣁⡈⢁⣈⣁⡀⠀⠉⠀⠙⠻⠶⠈⠉⠉⠀⠀   code_execution: execute_code                                                                                                                                       │
+│  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣿⡿⠛⢁⡈⠛⢿⣿⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀   computer_use: computer_use                                                                                                                                         │
+│  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠿⣿⣦⣤⣈⠁⢠⣴⣿⠿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀   cronjob: cronjob                                                                                                                                                   │
+│  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠻⢿⣿⣦⡉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀   delegation: delegate_task                                                                                                                                          │
+│  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢷⣦⣈⠛⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀   discord: discord                                                                                                                                                   │
+│  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣴⠦⠈⠙⠿⣦⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀   (and 25 more toolsets...)                                                                                                                                          │
+│  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣤⡈⠁⢤⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀                                                                                                                                                                      │
+│  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠷⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀   MCP Servers                                                                                                                                                        │
+│  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⠑⢶⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀   zai-vision (stdio) — 8 tool(s)                                                                                                                                     │
+│  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠁⢰⡆⠈⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀   zai-web-search (http) — 1 tool(s)                                                                                                                                  │
+│  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠳⠈⣡⠞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀   zai-web-reader (http) — 1 tool(s)                                                                                                                                  │
+│  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀   zai-zread (http) — 3 tool(s)                                                                                                                                       │
+│                                                                                                                                                                                                      │
+│      glm-5.1 · Nous Research      Available Skills                                                                                                                                                   │
+│      /home/prasad/ai-maestro      autonomous-ai-agents: claude-code, codex, hermes-agent, kanban-codex-...                                                                                           │
+│  Session: 20260524_183539_770092  creative: architecture-diagram, ascii-art, ascii-video, b...                                                                                                       │
+│                                   data-science: jupyter-live-kernel                                                                                                                                  │
+│                                   devops: kanban-orchestrator, kanban-worker, webhook-sub...                                                                                                         │
+│                                   email: himalaya                                                                                                                                                    │
+│                                   gaming: minecraft-modpack-server, pokemon-player                                                                                                                   │
+│                                   general: docker, dogfood, frontend-design, github-action...                                                                                                        │
+│                                   github: codebase-inspection, github-auth, github-code-r...                                                                                                         │
+│                                   mcp: native-mcp, zai-mcp-servers                                                                                                                                   │
+│                                   media: gif-search, heartmula, songsee, spotify, youtub...                                                                                                          │
+│                                   mlops: audiocraft-audio-generation, dspy, evaluating-l...                                                                                                          │
+│                                   note-taking: obsidian                                                                                                                                              │
+│                                   productivity: airtable, find-skills, google-workspace, linear...                                                                                                   │
+│                                   red-teaming: godmode                                                                                                                                               │
+│                                   research: arxiv, blogwatcher, llm-wiki, polymarket, resea...                                                                                                       │
+│                                   smart-home: openhue                                                                                                                                                │
+│                                   social-media: xurl                                                                                                                                                 │
+│                                   software-development: debugging-hermes-tui-commands, hermes-agent-ski...                                                                                           │
+│                                                                                                                                                                                                      │
+│                                   41 tools · 107 skills · 4 MCP servers · /help for commands                                                                                                         │
+│                                   ⚠ 84 commits behind — run hermes update to update                                                                                                                  │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+Welcome to Hermes Agent! Type your message or /help for commands.
+✦ Tip: Smart approval mode uses an LLM to auto-approve safe commands and flag dangerous ones.
+
+
+────────────────────────────────────────
+● Say exactly: HELLO_WORLD_TEST_12345
+Initializing agent...
+────────────────────────────────────────
+
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+    HELLO_WORLD_TEST_12345
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+────────────────────────────────────────
+● Do the following task and when done, output EXACTLY this line on its own line: ###HMP/1 DONE test-task-0001 Task completed successfully. Report the number 42.
+────────────────────────────────────────
+
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+    ###HMP/1 DONE test-task-0001 Task completed successfully. Report the number 42.
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+────────────────────────────────────────
+● Do the following task and when done, output EXACTLY this line on its own line: ###HMP/1 DONE test-task-0002 Task completed successfully. Report the number 42.
+────────────────────────────────────────
+
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+    ###HMP/1 DONE test-task-0002 Task completed successfully. Report the number 42.
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+────────────────────────────────────────
+● Do the following task and when done, output EXACTLY this line on its own line: ###HMP/1 DONE test-task-0003 Task completed successfully. Report the number 42.
+────────────────────────────────────────
+
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+    ###HMP/1 DONE test-task-0003 Task completed successfully. Report the number 42.
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+ ⚕ glm-5.1 │ 23.5K/200K │ [█░░░░░░░░░] 12% │ 1m │ ⏲ 4s
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+

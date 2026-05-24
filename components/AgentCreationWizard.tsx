@@ -343,7 +343,7 @@ export default function AgentCreationWizard({ onClose, onComplete }: AgentCreati
 
     const personaName = getRandomAlias(agentName)
     const avatarUrl = getPreviewAvatarUrl(agentName)
-    const program = 'claude-code'  // Default to Claude Code
+    const program = 'hermes'  // Default to Claude Code
 
     try {
       if (runtime === 'ec2' || runtime === 'ecs') {
@@ -1014,7 +1014,7 @@ function SummaryCard({
       )}
       <SummaryRow label="Deployment" value={runtimeLabel} />
       <SummaryRow label="Host" value={host?.isSelf ? 'This computer' : (host?.name || state.hostId || 'Local')} />
-      <SummaryRow label="AI Tool" value="Claude Code" />
+      <SummaryRow label="AI Tool" value="Hermes" />
 
       {/* Advanced options — collapsible */}
       {(state.runtime === 'docker' || state.runtime === 'ec2' || state.runtime === 'ecs') && (

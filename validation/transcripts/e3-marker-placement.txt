@@ -1,0 +1,7 @@
+  Iter 1: leading whitespace
+  Iter 2: leading whitespace
+  Iter 3: leading whitespace
+  Iter 4: leading whitespace
+  Iter 5: leading whitespace
+
+Column 0: 0, Whitespace: 5, Mid-line: 0

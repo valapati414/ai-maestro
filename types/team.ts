@@ -17,6 +17,35 @@
  */
 export type TeamType = 'open' | 'closed'
 
+/**
+ * Orchestration configuration for a team.
+ * When enabled, tasks in this team's kanban are automatically dispatched
+ * to configured Hermes workers.
+ *
+ * See: docs/ORCHESTRATION.md and docs/HERMES_PROTOCOL.md
+ */
+export interface TeamOrchestrationConfig {
+  /** Whether autonomous task orchestration is enabled for this team */
+  enabled: boolean
+
+  /** How to select which worker gets the next task */
+  workerSelection: 'round_robin' | 'by_specialty'
+
+  /** How often (seconds) to poll tmux panes for completion markers. Default: 10, min: 5 */
+  pollIntervalSeconds: number
+
+  /** How long (minutes) before an in-flight task is flagged as stale. Default: 30 */
+  staleThresholdMinutes: number
+
+  /** Workers configured for this team's orchestration */
+  workers: Array<{
+    /** Agent ID of the worker */
+    agentId: string
+    /** Optional tags for matching tasks to specialized workers */
+    specialties?: string[]
+  }>
+}
+
 export interface Team {
   id: string              // UUID
   name: string            // "Backend Squad"
@@ -25,6 +54,7 @@ export interface Team {
   instructions?: string   // Team-level markdown (like a per-team CLAUDE.md)
   type?: TeamType         // 'open' (default) or 'closed' (isolated messaging)
   chiefOfStaffId?: string // Agent ID of the chief-of-staff (required for closed teams)
+  orchestration?: TeamOrchestrationConfig  // Autonomous task dispatch config
   createdAt: string       // ISO
   updatedAt: string       // ISO
   lastMeetingAt?: string  // ISO - last time a meeting was started with this team
