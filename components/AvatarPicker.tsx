@@ -160,6 +160,7 @@ export default function AvatarPicker({
                   `}
                   title={isDisabled ? 'Already in use by another agent' : isCurrent ? 'Current avatar' : `Avatar ${index + 1}`}
                 >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={url}
                     alt={`Avatar ${index + 1}`}

@@ -125,6 +125,7 @@ export default function AgentCard({
               : 'bg-gradient-to-br from-violet-900/40 to-purple-950/60'
           }`}>
             {isAvatarUrl ? (
+              // eslint-disable-next-line @next/next/no-img-element
               <img
                 src={agent.avatar}
                 alt={displayName}

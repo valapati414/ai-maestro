@@ -216,6 +216,7 @@ export default function WorkTree({ sessionName, agentId, agentAlias, hostId, isA
   useEffect(() => {
     if (!isActive) return
     fetchWorkTree()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [agentId, isActive])
 
   const rebuildMemory = async () => {

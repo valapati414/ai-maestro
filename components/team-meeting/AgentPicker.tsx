@@ -72,6 +72,7 @@ export default function AgentPicker({ agents, selectedAgentIds, onToggleAgent }:
               <div className="relative">
                 <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-700">
                   {agent.avatar ? (
+                    // eslint-disable-next-line @next/next/no-img-element
                     <img src={agent.avatar} alt={displayName} className="w-full h-full object-cover" />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center text-gray-400 text-lg font-bold">

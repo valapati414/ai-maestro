@@ -52,6 +52,7 @@ export default function EmailAddressesSection({
     if (isExpanded && agentId) {
       fetchAddresses()
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isExpanded, agentId])
 
   // Add new email address (called from EmailAddressDialog)

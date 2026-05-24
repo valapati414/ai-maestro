@@ -257,6 +257,7 @@ export default function MobileWorkTree({
 
   useEffect(() => {
     fetchWorkTree()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sessionName, agentId])
 
   const toggleProject = (projectId: string) => {

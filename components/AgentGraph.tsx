@@ -293,6 +293,7 @@ export default function AgentGraph({ sessionName, agentId, workingDirectory, hos
     }
 
     init()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [agentId, isActive])
 
   // Render graph with Cytoscape

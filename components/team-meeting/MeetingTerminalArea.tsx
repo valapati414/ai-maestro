@@ -17,6 +17,7 @@ function MeetingTerminalAreaInner({ agents, activeAgentId }: MeetingTerminalArea
   const activeAgent = agents.find(a => a.id === activeAgentId)
   const session = useMemo(
     () => activeAgent ? agentToSession(activeAgent) : null,
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [
       activeAgent?.id,
       activeAgent?.session?.tmuxSessionName,

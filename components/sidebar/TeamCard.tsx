@@ -53,6 +53,7 @@ export default function TeamCard({ team, agents, onStartMeeting, onEdit, onDelet
                 title={agent ? (agent.label || agent.name || 'Unknown') : 'Deleted agent'}
               >
                 {agent?.avatar && (agent.avatar.startsWith('http') || agent.avatar.startsWith('/')) ? (
+                  // eslint-disable-next-line @next/next/no-img-element
                   <img src={agent.avatar} alt="" className="w-full h-full rounded-full object-cover" />
                 ) : (
                   getInitials(agent)

@@ -121,6 +121,7 @@ function CompanionContent() {
         setActiveAgentId(decoded)
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [agents, agentParam])
 
   // Show dialog if no agent selected
@@ -355,6 +356,7 @@ function CompanionContent() {
       }
       fitAddonRef.current = null
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tmuxSessionName])
 
   // Update window title
@@ -407,6 +409,7 @@ function CompanionContent() {
         {/* Full-bleed avatar */}
         <div className={`absolute inset-0 ${BORDER_GLOW[activityState]}`}>
           {isAvatarUrl ? (
+            // eslint-disable-next-line @next/next/no-img-element
             <img
               src={activeAgent!.avatar}
               alt={displayName}
@@ -614,6 +617,7 @@ function CompanionContent() {
                     <div className="flex items-center gap-2">
                       <div className="w-8 h-8 rounded-full overflow-hidden bg-gray-700 flex items-center justify-center flex-shrink-0">
                         {agent.avatar && (agent.avatar.startsWith('http') || agent.avatar.startsWith('/')) ? (
+                          // eslint-disable-next-line @next/next/no-img-element
                           <img src={agent.avatar} alt="" className="w-full h-full object-cover" />
                         ) : agent.avatar ? (
                           <span className="text-sm">{agent.avatar}</span>
@@ -646,6 +650,7 @@ function CompanionContent() {
       <div className={`hidden md:block w-[40%] relative overflow-hidden ${BORDER_GLOW[activityState]}`}>
         {/* Full-bleed avatar background */}
         {isAvatarUrl ? (
+          // eslint-disable-next-line @next/next/no-img-element
           <img
             src={activeAgent!.avatar}
             alt={displayName}
@@ -905,6 +910,7 @@ function CompanionContent() {
               <div className="flex items-center gap-2">
                 <div className="w-7 h-7 rounded-full overflow-hidden bg-gray-800 flex items-center justify-center">
                   {isAvatarUrl ? (
+                    // eslint-disable-next-line @next/next/no-img-element
                     <img src={activeAgent.avatar} alt={displayName} className="w-full h-full object-cover" />
                   ) : activeAgent.avatar ? (
                     <span className="text-sm">{activeAgent.avatar}</span>
@@ -1001,6 +1007,7 @@ function CompanionContent() {
                       <div className="flex items-center gap-3">
                         <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-700 flex items-center justify-center flex-shrink-0">
                           {agent.avatar && (agent.avatar.startsWith('http') || agent.avatar.startsWith('/')) ? (
+                            // eslint-disable-next-line @next/next/no-img-element
                             <img src={agent.avatar} alt="" className="w-full h-full object-cover" />
                           ) : agent.avatar ? (
                             <span className="text-xl">{agent.avatar}</span>

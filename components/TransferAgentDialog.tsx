@@ -98,6 +98,7 @@ export default function TransferAgentDialog({
       }
     }
     fetchRepos()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [agentId])
 
   const selectedHost = hosts.find(h => h.id === selectedHostId)

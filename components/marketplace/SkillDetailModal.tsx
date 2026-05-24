@@ -52,6 +52,7 @@ export default function SkillDetailModal({
     } else if (skill?.content) {
       setContent(skill.content)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen, skill])
 
   const loadSkillContent = async () => {

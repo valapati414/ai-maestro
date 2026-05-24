@@ -361,6 +361,7 @@ export default function ZoomPage() {
                         : 'bg-violet-600/30 text-violet-300'
                     }`}>
                       {isAvatarUrl ? (
+                        // eslint-disable-next-line @next/next/no-img-element
                         <img
                           src={selectedAgent.avatar}
                           alt={displayName}

@@ -105,6 +105,7 @@ function ZoomAgentContent() {
                       : 'bg-violet-600/30 text-violet-300'
                   }`}>
                     {isAvatarUrl ? (
+                      // eslint-disable-next-line @next/next/no-img-element
                       <img
                         src={agent.avatar}
                         alt={displayName}

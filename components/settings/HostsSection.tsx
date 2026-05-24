@@ -143,6 +143,7 @@ export default function HostsSection() {
     if (hosts.length > 0) {
       refreshAllHosts()
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hosts]) // Run when hosts change (not just length)
 
   const fetchHosts = async () => {

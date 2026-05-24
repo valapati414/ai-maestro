@@ -235,6 +235,7 @@ function TeamFormModal({
                       }`}
                     >
                       {agent.avatar && (agent.avatar.startsWith('http') || agent.avatar.startsWith('/')) ? (
+                        // eslint-disable-next-line @next/next/no-img-element
                         <img src={agent.avatar} alt="" className="w-5 h-5 rounded-full object-cover" />
                       ) : (
                         <div className="w-5 h-5 rounded-full bg-gray-700 flex items-center justify-center text-[9px] font-medium">

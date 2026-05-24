@@ -157,6 +157,7 @@ export default function DocumentationPanel({ sessionName, agentId, workingDirect
     }
 
     loadData()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [agentId, isActive])
 
   // Index documentation

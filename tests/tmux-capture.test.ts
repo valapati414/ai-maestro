@@ -1,7 +1,7 @@
 /**
  * Unit tests for tmux-capture.ts
  */
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { captureTmuxPane, isTmuxSessionAlive, listTmuxSessions, getAgentSessionName } from '../lib/tmux-capture'
 
 // Mock child_process.execSync

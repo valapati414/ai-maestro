@@ -821,6 +821,7 @@ export default function AgentList({
                             <span className="text-lg">{agent.avatar}</span>
                           </div>
                         ) : (
+                          // eslint-disable-next-line @next/next/no-img-element
                           <img
                             src={avatarUrl}
                             alt={agent.label || agent.name}
@@ -1302,6 +1303,7 @@ export default function AgentList({
                                           <div className="flex-1 min-w-0 flex items-center gap-3">
                                             {/* Avatar or Icon */}
                                             {agent.avatar && (agent.avatar.startsWith('http') || agent.avatar.startsWith('/')) ? (
+                                              // eslint-disable-next-line @next/next/no-img-element
                                               <img
                                                 src={agent.avatar}
                                                 alt=""

@@ -108,6 +108,7 @@ export default function AgentProfile({ isOpen, onClose, agentId, sessionStatus, 
     }
 
     fetchAgent()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen, agentId])
 
   // Fetch repositories lazily - only when section is expanded
@@ -131,6 +132,7 @@ export default function AgentProfile({ isOpen, onClose, agentId, sessionStatus, 
     }
 
     fetchRepos()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen, agentId, expandedSections.repositories, reposLoaded])
 
   // Fetch used avatars (all avatars from other agents on this host)
@@ -424,6 +426,7 @@ export default function AgentProfile({ isOpen, onClose, agentId, sessionStatus, 
                         title="Click to change avatar"
                       >
                         {agent.avatar ? (
+                          // eslint-disable-next-line @next/next/no-img-element
                           <img
                             src={agent.avatar}
                             alt={agent.label || agent.name || 'Agent'}

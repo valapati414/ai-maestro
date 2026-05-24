@@ -76,6 +76,7 @@ export default function UseCaseSelector({ onSelect, onSkip }: UseCaseSelectorPro
             <div className="flex items-start gap-6">
               {/* Logo */}
               <div className="flex-shrink-0">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/logo-constellation.svg"
                   alt="AI Maestro Logo"

@@ -206,6 +206,7 @@ export default function MemoryViewer({ agentId, hostUrl = '', isActive = false }
   useEffect(() => {
     if (!isActive) return
     Promise.all([fetchMemories(), fetchStats()])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [agentId, isActive])
 
   // Fetch graph when view changes to graph
@@ -213,6 +214,7 @@ export default function MemoryViewer({ agentId, hostUrl = '', isActive = false }
     if (view === 'graph') {
       fetchGraph()
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [view, agentId])
 
   // Handle edit
@@ -807,7 +809,7 @@ function MemoryGraph({
       }
       clearTimeout(timeout)
     }
-  }, [data, nodes.length > 0])
+  }, [data, nodes.length])
 
   // Draw graph
   // OPTIMIZED: Build index map for O(1) lookups instead of O(n) find() calls

@@ -87,6 +87,7 @@ export default function MobileKeyToolbar({ onSendKey, visible }: MobileKeyToolba
         onSendKey(key)
       }, 80)
     }, 400)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [onSendKey])
 
   const stopRepeat = useCallback(() => {

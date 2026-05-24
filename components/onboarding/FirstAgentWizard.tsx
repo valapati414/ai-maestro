@@ -118,6 +118,7 @@ export default function FirstAgentWizard({ onComplete, onCancel }: FirstAgentWiz
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               {/* Logo */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/logo-constellation.svg"
                 alt="AI Maestro Logo"

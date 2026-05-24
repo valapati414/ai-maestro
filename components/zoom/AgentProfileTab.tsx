@@ -319,6 +319,7 @@ export default function AgentProfileTab({ agent: initialAgent, hostUrl, onClose 
                   title="Click to change avatar"
                 >
                   {isAvatarUrl ? (
+                    // eslint-disable-next-line @next/next/no-img-element
                     <img src={agent.avatar} alt={displayName} className="w-full h-full object-cover" />
                   ) : agent.avatar ? (
                     agent.avatar

@@ -532,6 +532,7 @@ export default function AgentCreationWizard({ onClose, onComplete }: AgentCreati
                 animate={{ opacity: [0.4, 0.7, 0.4], scale: [0.98, 1.02, 0.98] }}
                 transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
               />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={robotAvatarUrl}
                 alt="Robot assistant"
@@ -749,6 +750,7 @@ function ChatBubble({
     >
       {isRobot && (
         <div className="flex-shrink-0 mr-2 mt-1">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={robotAvatarUrl} alt="" className="w-7 h-7 rounded-full object-cover ring-1 ring-gray-700" />
         </div>
       )}

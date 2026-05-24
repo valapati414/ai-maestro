@@ -338,6 +338,7 @@ export default function AgentBadge({
                 </span>
               </div>
             ) : (
+              // eslint-disable-next-line @next/next/no-img-element
               <img
                 src={avatarUrl}
                 alt={agent.label || agent.name}

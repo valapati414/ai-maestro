@@ -84,6 +84,7 @@ export default function MobileConversationDetail({
 
   useEffect(() => {
     loadConversation()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [conversationFile])
 
   useEffect(() => {

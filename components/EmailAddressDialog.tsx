@@ -73,6 +73,7 @@ export default function EmailAddressDialog({
       setShowAddDomain(false)
       setNewDomainName('')
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen])
 
   // Get selected domain object

@@ -49,6 +49,7 @@ export default function SelectedAgentsBar({
                 >
                   <div className="w-5 h-5 rounded-full overflow-hidden bg-gray-700 flex-shrink-0">
                     {agent.avatar ? (
+                      // eslint-disable-next-line @next/next/no-img-element
                       <img src={agent.avatar} alt={displayName} className="w-full h-full object-cover" />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-[10px] text-gray-400 font-bold">

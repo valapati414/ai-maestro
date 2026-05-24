@@ -73,6 +73,7 @@ export default function ConversationDetailPanel({ conversationFile, projectPath,
 
   useEffect(() => {
     loadConversation()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [conversationFile, hostUrl])
 
   const loadConversation = async () => {
@@ -481,6 +482,7 @@ export default function ConversationDetailPanel({ conversationFile, projectPath,
     } else {
       setSemanticResults([])
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchQuery, useSemanticSearch, agentId, conversationFile, messages])
 
   // Check if a message matches the search query
@@ -491,6 +493,7 @@ export default function ConversationDetailPanel({ conversationFile, projectPath,
   }
 
   // Get match indices for navigation (indices in the full messages array)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const matchIndices = searchQuery.trim()
     ? useSemanticSearch
       ? semanticResults.map(r => r.index) // Use semantic search results

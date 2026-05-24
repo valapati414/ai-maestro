@@ -50,6 +50,7 @@ export default function AMPAddressesSection({
     if (isExpanded && agentId) {
       fetchAddresses()
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isExpanded, agentId])
 
   // Remove AMP address

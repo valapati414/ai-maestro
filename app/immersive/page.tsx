@@ -229,6 +229,7 @@ export default function ImmersivePage() {
       }
       fitAddonRef.current = null
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tmuxSessionName])
 
   // Show agent dialog if no active agent

@@ -35,6 +35,7 @@ export default function MobileCallOverlay({ agent, onClose }: MobileCallOverlayP
   // WebSocket for speech events
   const handleSpeech = useCallback((text: string) => {
     tts.speak(text)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tts.speak])
 
   useCompanionWebSocket({
@@ -63,6 +64,7 @@ export default function MobileCallOverlay({ agent, onClose }: MobileCallOverlayP
   // Cleanup TTS on unmount
   useEffect(() => {
     return () => { tts.stop() }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tts.stop])
 
   const formatDuration = (s: number) => {
@@ -92,6 +94,7 @@ export default function MobileCallOverlay({ agent, onClose }: MobileCallOverlayP
         // no-op for now
         break
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tts.isMuted, tts.toggleMute])
 
   // ── Ringing Phase ──
@@ -135,6 +138,7 @@ export default function MobileCallOverlay({ agent, onClose }: MobileCallOverlayP
           {/* Avatar circle */}
           <div className="w-24 h-24 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-3xl text-white font-bold shadow-lg shadow-emerald-500/30">
             {avatarUrl ? (
+              // eslint-disable-next-line @next/next/no-img-element
               <img src={avatarUrl} alt={displayName} className="w-full h-full rounded-full object-cover" />
             ) : avatarEmoji ? (
               <span className="text-4xl">{avatarEmoji}</span>
@@ -169,6 +173,7 @@ export default function MobileCallOverlay({ agent, onClose }: MobileCallOverlayP
       {/* Background */}
       <div className="absolute inset-0 overflow-hidden">
         {avatarUrl ? (
+          // eslint-disable-next-line @next/next/no-img-element
           <img src={avatarUrl} alt="" className="w-full h-full object-cover scale-110 blur-md" />
         ) : (
           <div className="w-full h-full bg-gradient-to-br from-gray-900 via-emerald-950 to-gray-900" />
@@ -198,6 +203,7 @@ export default function MobileCallOverlay({ agent, onClose }: MobileCallOverlayP
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-sm font-semibold text-white">
               {avatarUrl ? (
+                // eslint-disable-next-line @next/next/no-img-element
                 <img src={avatarUrl} alt={displayName} className="w-full h-full rounded-full object-cover" />
               ) : avatarEmoji ? (
                 <span className="text-lg">{avatarEmoji}</span>
@@ -220,6 +226,7 @@ export default function MobileCallOverlay({ agent, onClose }: MobileCallOverlayP
           {/* Large avatar */}
           <div className="w-28 h-28 rounded-full bg-gradient-to-br from-emerald-500/30 to-teal-600/30 border border-white/10 flex items-center justify-center text-4xl text-white font-bold mb-6">
             {avatarUrl ? (
+              // eslint-disable-next-line @next/next/no-img-element
               <img src={avatarUrl} alt={displayName} className="w-full h-full rounded-full object-cover" />
             ) : avatarEmoji ? (
               <span className="text-5xl">{avatarEmoji}</span>

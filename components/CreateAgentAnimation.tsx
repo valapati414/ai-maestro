@@ -347,6 +347,7 @@ function CreatingAnimation({ avatarUrl }: { avatarUrl?: string }) {
         className="relative z-10"
       >
         {avatarUrl ? (
+          // eslint-disable-next-line @next/next/no-img-element
           <img
             src={avatarUrl}
             alt="Agent avatar"
@@ -454,6 +455,7 @@ function ReadyAnimation({ agentName, agentAlias, avatarUrl, showNextSteps }: { a
           className="relative"
         >
           {avatarUrl ? (
+            // eslint-disable-next-line @next/next/no-img-element
             <img
               src={avatarUrl}
               alt="Agent avatar"

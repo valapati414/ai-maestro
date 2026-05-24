@@ -163,6 +163,7 @@ export default function MobileHostsList({
       if (hostB?.type === 'local') return 1
       return getHostName(a).localeCompare(getHostName(b))
     })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hosts, groupedAgents])
 
   // Combined loading state

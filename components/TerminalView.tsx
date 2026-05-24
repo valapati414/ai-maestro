@@ -459,6 +459,7 @@ export default function TerminalView({ session, isVisible = true, hideFooter = f
         message: 'Unable to access clipboard. Try using the Prompt Builder tab to paste text.',
       })
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isConnected, sendMessage])
 
   // Handle terminal resize

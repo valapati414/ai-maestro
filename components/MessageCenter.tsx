@@ -381,6 +381,7 @@ export default function MessageCenter({ sessionName, agentId, allAgents, hostUrl
     fetchSentMessages()
     fetchUnreadCount()
     fetchSentCount()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [messageIdentifier, isActive])
 
   // Polling - only when active
@@ -393,6 +394,7 @@ export default function MessageCenter({ sessionName, agentId, allAgents, hostUrl
       fetchSentCount()
     }, 10000)
     return () => clearInterval(interval)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [messageIdentifier, isActive])
 
   // Close dropdown when clicking outside
@@ -1102,7 +1104,6 @@ export default function MessageCenter({ sessionName, agentId, allAgents, hostUrl
                 type="text"
                 aria-label="Recipient agent name"
                 aria-autocomplete="list"
-                aria-expanded={showAgentSuggestions}
                 value={composeTo}
                 onChange={(e) => setComposeTo(e.target.value)}
                 onKeyDown={handleToKeyDown}
