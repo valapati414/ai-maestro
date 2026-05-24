@@ -1,19 +1,21 @@
 <div align="center">
 
-<img src="./docs/logo-constellation.svg" alt="AI Maestro Logo" width="120"/>
+<img src="./docs/logo-constellation.svg" alt="Hermes Maestro Logo" width="120"/>
 
-# AI Maestro
+# Hermes Maestro
+
+This project is a hard fork of AI Maestro (https://github.com/23blocks-OS/ai-maestro) by 23blocks, originally MIT-licensed. See LICENSE.upstream for the original license.
 
 *I was running 35 AI agents across multiple terminals and became the human mailman between them. So I built AI Maestro.*
 
 **The OS for AI-first organizations — orchestrate any AI agent with persistent memory, agent-to-agent messaging, and multi-machine support.**
 
-[![Version](https://img.shields.io/badge/version-0.29.16-blue)](https://github.com/23blocks-OS/ai-maestro/releases)
-[![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20Linux%20%7C%20Windows%20(WSL2)-lightgrey)](https://github.com/23blocks-OS/ai-maestro)
+[![Version](https://img.shields.io/badge/version-0.29.16-blue)](https://github.com/valapati414/ai-maestro/releases)
+[![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20Linux%20%7C%20Windows%20(WSL2)-lightgrey)](https://github.com/valapati414/ai-maestro)
 [![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
-[![GitHub Stars](https://img.shields.io/github/stars/23blocks-OS/ai-maestro?style=social)](https://github.com/23blocks-OS/ai-maestro)
+[![GitHub Stars](https://img.shields.io/github/stars/valapati414/ai-maestro?style=social)](https://github.com/valapati414/ai-maestro)
 
-![AI Maestro Dashboard](./docs/images/aiteam-web.png)
+![Hermes Maestro Dashboard](./docs/images/aiteam-web.png)
 
 [Quick Start](#-quick-start) · [Features](#-features) · [Documentation](#-documentation) · [Contributing](./CONTRIBUTING.md)
 
@@ -39,11 +41,11 @@ Within a week I was running 35 agents across terminals. They were productive, bu
 ## Quick Start
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/23blocks-OS/ai-maestro/main/scripts/remote-install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/valapati414/ai-maestro/main/scripts/remote-install.sh | sh
 ```
 
 This installs everything you need:
-- AI Maestro dashboard and service
+- Hermes Maestro dashboard and service
 - Agent messaging system (AMP)
 - Claude Code plugin with 5 skills and 32 CLI scripts
 
@@ -67,7 +69,7 @@ wsl --install
 <summary>Manual install</summary>
 
 ```bash
-git clone https://github.com/23blocks-OS/ai-maestro.git
+git clone https://github.com/valapati414/ai-maestro.git
 cd ai-maestro
 yarn install
 yarn dev
@@ -135,12 +137,12 @@ Custom avatars, personality profiles, and visual presence for every agent. When 
 
 Four ways to run agents, each for a different need:
 
-| Mode | What | Best For |
-|------|------|----------|
-| **tmux** | Direct terminal sessions on your machine | Local development, zero setup |
-| **Docker** | Containerized agents with resource limits | Isolation, reproducibility, multi-project |
-| **AWS EC2** | Dedicated Graviton instance with native install, Nginx + SSL | Always-on agents, SSH access, persistent workloads |
-| **AWS ECS Fargate** | Serverless containers, auto-built Docker image | Burst scaling, zero maintenance, pay-per-use |
+|| Mode | What | Best For ||
+||------|------|----------||
+|| **tmux** | Direct terminal sessions on your machine | Local development, zero setup ||
+|| **Docker** | Containerized agents with resource limits | Isolation, reproducibility, multi-project ||
+|| **AWS EC2** | Dedicated Graviton instance with native install, Nginx + SSL | Always-on agents, SSH access, persistent workloads ||
+|| **AWS ECS Fargate** | Serverless containers, auto-built Docker image | Burst scaling, zero maintenance, pay-per-use ||
 
 Cloud agents are Terraform-managed. EC2 installs Node.js, tmux, and AI CLIs directly on ARM64 hardware (no Docker overhead). ECS auto-builds your Docker image, pushes to ECR, and runs on Fargate. Both deploy with one command from the dashboard or CLI.
 
@@ -157,10 +159,10 @@ aimaestro-agent.sh create worker --ecs
 
 ## Meet Lola — Your First Hire
 
-Every AI-first organization starts with one agent. **Lola** is yours — a batteries-included Chief of Staff framework built for AI Maestro. She handles email triage, semantic memory, task management, and content security out of the box. Install the platform, deploy Lola, and you have your first employee on day one.
+Every AI-first organization starts with one agent. **Lola** is yours — a batteries-included Chief of Staff framework built for Hermes Maestro. She handles email triage, semantic memory, task management, and content security out of the box. Install the platform, deploy Lola, and you have your first employee on day one.
 
 ```bash
-# Clone and deploy Lola on AI Maestro
+# Clone and deploy Lola on Hermes Maestro
 git clone https://github.com/23blocks-OS/lolabot.git
 cd lolabot && ./setup.sh
 ```
@@ -173,14 +175,14 @@ cd lolabot && ./setup.sh
 
 Every agent is built from four dimensions:
 
-| | Dimension | What | Where |
-|-|-----------|------|-------|
-| **WHO** | Personality | Domain expertise, workflows, deliverables | [Agent Library](https://github.com/msitarzewski/agency-agents) (150+) |
-| **HOW** | Capabilities | Skills, scripts, CLI tools | [Plugin Builder](https://github.com/23blocks-OS/ai-maestro-plugins) |
-| **TRUST** | Identity | Cryptographic keys, OAuth tokens | [AID](https://agentids.org) |
-| **TALK** | Communication | Agent-to-agent messaging | [AMP](https://agentmessaging.org) |
+|| | Dimension | What | Where ||
+||-|-----------|------|-------||
+|| **WHO** | Personality | Domain expertise, workflows, deliverables | [Agent Library](https://github.com/msitarzewski/agency-agents) (150+) ||
+|| **HOW** | Capabilities | Skills, scripts, CLI tools | [Plugin Builder](https://github.com/23blocks-OS/ai-maestro-plugins) ||
+|| **TRUST** | Identity | Cryptographic keys, OAuth tokens | [AID](https://agentids.org) ||
+|| **TALK** | Communication | Agent-to-agent messaging | [AMP](https://agentmessaging.org) ||
 
-AI Maestro is the stage. Pick personalities, give them skills, and run them from one dashboard.
+Hermes Maestro is the stage. Pick personalities, give them skills, and run them from one dashboard.
 
 [Read the full ecosystem guide →](./docs/ECOSYSTEM.md)
 
@@ -246,7 +248,7 @@ AI Maestro is the stage. Pick personalities, give them skills, and run them from
 - Agent playback — time-travel through agent sessions
 - Performance analytics dashboard
 
-See the full [roadmap](https://github.com/23blocks-OS/ai-maestro/issues) and [join the discussion](https://github.com/23blocks-OS/ai-maestro/discussions).
+See the full [roadmap](https://github.com/valapati414/ai-maestro/issues) and [join the discussion](https://github.com/valapati414/ai-maestro/discussions).
 
 ---
 
@@ -254,11 +256,13 @@ See the full [roadmap](https://github.com/23blocks-OS/ai-maestro/issues) and [jo
 
 We love contributions. See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
 
-- [Report a bug](https://github.com/23blocks-OS/ai-maestro/issues)
-- [Request a feature](https://github.com/23blocks-OS/ai-maestro/issues/new?labels=enhancement)
+- [Report a bug](https://github.com/valapati414/ai-maestro/issues)
+- [Request a feature](https://github.com/valapati414/ai-maestro/issues/new?labels=enhancement)
 
 <details>
 <summary><b>Acknowledgments</b></summary>
+
+This project is a hard fork of AI Maestro (https://github.com/23blocks-OS/ai-maestro) by 23blocks, originally MIT-licensed.
 
 Built with [Next.js](https://nextjs.org/), [xterm.js](https://xtermjs.org/), [CozoDB](https://www.cozodb.org/), [ts-morph](https://ts-morph.com/), [tmux](https://github.com/tmux/tmux), and [Claude Code](https://claude.ai).
 
@@ -278,8 +282,10 @@ MIT — see [LICENSE](./LICENSE). Free for any purpose, including commercial.
 
 [Juan Pelaez](https://x.com/jkpelaez) · [23blocks](https://23blocks.com)
 
+*Forked and maintained as Hermes Maestro by [Prasad Alapati](https://github.com/valapati414)*
+
 *Built by AI Agents with Humans in the driver seat — for AI-first organizations, AI-enabled humans, and autonomous agents*
 
-[Star us on GitHub](https://github.com/23blocks-OS/ai-maestro)
+[Star us on GitHub](https://github.com/valapati414/ai-maestro)
 
 </div>
