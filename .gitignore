@@ -159,3 +159,7 @@ incoming/
 
 # AI team operator-private instructions
 ai-team/
+
+# Python bytecode (skill engines)
+__pycache__/
+*.pyc
