@@ -1,7 +1,8 @@
 """Probabilistic revenue forecasting engine for data-protection / storage-software vendors.
 
 Dependency-light (numpy only; uses scipy for the normal CDF/quantile when available and
-falls back to an accurate rational approximation when it is not).
+otherwise falls back to math.erf plus a Newton-refined rational approximation, which agrees
+with scipy to double precision — the two paths are numerically interchangeable).
 
 The module follows the identity chain documented in SKILL.md::
 
@@ -133,6 +134,18 @@ except Exception:  # pragma: no cover
             / (((((_B[0] * r + _B[1]) * r + _B[2]) * r + _B[3]) * r + _B[4]) * r + 1.0),
             out,
         )
+
+        # Acklam alone leaves ~1e-9 of relative error, enough that round trips like
+        # norm_cdf(norm_ppf(p)) - p show up at 1e-10 and quantities defined to be exactly
+        # zero (indicator_correlation at rho=0) come back at 1e-10 instead. _ndtr_impl above
+        # is machine-precision via math.erf, so one Newton step against it costs a single
+        # CDF evaluation and brings this branch to double precision, keeping the scipy and
+        # no-scipy paths numerically interchangeable.
+        with np.errstate(over="ignore", under="ignore", invalid="ignore"):
+            density = np.exp(-0.5 * out * out) / math.sqrt(2.0 * math.pi)
+            step = np.where(density > 0.0, (p - _ndtr_impl(out)) / density, 0.0)
+            out = out + np.where(np.isfinite(step), step, 0.0)
+
         out = np.where(p <= 0.0, -np.inf, out)
         out = np.where(p >= 1.0, np.inf, out)
         return out

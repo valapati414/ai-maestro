@@ -36,6 +36,30 @@ def close(a, b, rel=1e-9, abs_=1e-9):
 
 
 # ---------------------------------------------------------------------------
+# 0. Numerics — both the scipy and the no-scipy path must hold to double precision
+# ---------------------------------------------------------------------------
+
+
+@check("norm_cdf/norm_ppf round trip holds to double precision on either backend")
+def _():
+    # Only meaningful on a host without scipy, where norm_ppf is a rational approximation
+    # refined by one Newton step. Without that step the round trip is off by ~2e-10, which
+    # silently breaks quantities defined to be exactly zero. CI runs this both ways.
+    ps = np.array([1e-12, 1e-6, 0.001, 0.02425, 0.1, 0.3, 0.5, 0.7, 0.97575, 0.999, 1 - 1e-9])
+    err = np.abs(dp.norm_cdf(dp.norm_ppf(ps)) - ps)
+    assert err.max() <= 1e-15, (dp.HAVE_SCIPY, err.max())
+
+    # Symmetry and the known median/quartile values.
+    close(float(dp.norm_ppf(0.5)), 0.0, abs_=1e-15)
+    close(float(dp.norm_ppf(0.975)), 1.959963984540054, abs_=1e-12)
+    close(float(dp.norm_ppf(0.3)), -0.5244005127080409, abs_=1e-12)
+    close(float(dp.norm_cdf(0.0)), 0.5, abs_=1e-15)
+
+    # The tails must stay saturated rather than wrapping around.
+    assert dp.norm_ppf(0.0) == -np.inf and dp.norm_ppf(1.0) == np.inf
+
+
+# ---------------------------------------------------------------------------
 # 1. Measure-type safety
 # ---------------------------------------------------------------------------
 
@@ -82,17 +106,8 @@ def _():
 
 
 # ---------------------------------------------------------------------------
-# 0/2. Numerics and distributions
+# 2. Distributions
 # ---------------------------------------------------------------------------
-
-
-@check("norm_ppf / norm_cdf round trip")
-def _():
-    p = np.array([0.001, 0.01, 0.1, 0.25, 0.5, 0.75, 0.9, 0.99, 0.999])
-    back = dp.norm_cdf(dp.norm_ppf(p))
-    assert np.max(np.abs(back - p)) < 1e-7, np.max(np.abs(back - p))
-    close(float(dp.norm_ppf(0.975)), 1.959963985, rel=1e-6)
-    close(float(dp.norm_cdf(0.0)), 0.5, rel=1e-12)
 
 
 @check("distributions sample with the right means")
