@@ -1,0 +1,96 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: py${{ matrix.python-version }} ${{ matrix.scipy && '+ scipy' || 'numpy only' }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.9', '3.11', '3.13']
+        # The engine promises it runs without scipy, falling back to math.erf plus a
+        # Newton-refined inverse CDF. That promise is only real if CI exercises the
+        # fallback, so both paths are tested on every version.
+        scipy: [false, true]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install required dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Install scipy (fast path only)
+        if: matrix.scipy
+        run: pip install scipy
+
+      - name: Assert the expected numerics backend is the one under test
+        run: |
+          python - <<'PY'
+          import sys
+          sys.path.insert(0, 'engine')
+          import dpforecast
+          expected = ${{ matrix.scipy && 'True' || 'False' }}
+          if dpforecast.HAVE_SCIPY is not expected:
+              raise SystemExit(
+                  f"expected HAVE_SCIPY={expected}, got {dpforecast.HAVE_SCIPY}; "
+                  "the matrix is not testing the path it claims to"
+              )
+          print("backend as expected:", dpforecast.HAVE_SCIPY)
+          PY
+
+      - name: Engine self-tests
+        working-directory: engine
+        run: python test_dpforecast.py
+
+      - name: Repository integrity tests
+        run: python -m unittest discover -s tests -v
+
+      - name: Worked example
+        working-directory: engine
+        run: python example_outside_in.py
+
+  cross-backend-parity:
+    name: scipy and no-scipy agree byte for byte
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install numpy only
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run the example on the fallback path
+        working-directory: engine
+        run: python example_outside_in.py > /tmp/without_scipy.txt
+
+      - name: Install scipy
+        run: pip install scipy
+
+      - name: Run the example on the scipy path
+        working-directory: engine
+        run: python example_outside_in.py > /tmp/with_scipy.txt
+
+      - name: Diff the two
+        run: |
+          if ! diff -u /tmp/without_scipy.txt /tmp/with_scipy.txt; then
+            echo "::error::the scipy and no-scipy paths disagree; README claims they are interchangeable"
+            exit 1
+          fi
+          echo "identical output on both numerics backends"

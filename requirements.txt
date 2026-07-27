@@ -1,0 +1,8 @@
+# The engine is deliberately dependency-light so it runs anywhere without a
+# data-science stack. tests/test_skill_integrity.py enforces this.
+numpy>=1.21
+
+# Optional. The engine uses scipy.special for the normal CDF when it is importable
+# and falls back to a built-in approximation when it is not, so results match
+# either way. Install it only if you want the faster path.
+# scipy>=1.7
