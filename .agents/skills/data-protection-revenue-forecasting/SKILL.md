@@ -138,7 +138,7 @@ present and falls back to a built-in approximation when not) and runnable:
 ```bash
 cd .agents/skills/data-protection-revenue-forecasting/engine
 python3 dpforecast.py               # API summary
-python3 test_dpforecast.py          # 60 self-tests, all must pass
+python3 test_dpforecast.py          # self-test suite, all must pass
 python3 example_outside_in.py       # full worked Commvault FY27 forecast, end to end
 ```
 
