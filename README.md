@@ -57,6 +57,7 @@ understand what this repo is for.
 | `references/demand-drivers-and-alt-data.md` | Market sizing, named catalysts with proxy series, alt-data with honest predictive value |
 | `references/profit-levers.md` | Margin structure, unit economics, ranked sensitivity table, driver-based P&L and FCF bridge |
 | `references/company-profiles.md` | Sourced financials, definitions, guidance history, seasonality, comparability traps per vendor |
+| `forecasts/` | Dated forecast records, each with its assumption register and scoring plan |
 | `tests/test_skill_integrity.py` | Guards the repo's structure and the engine's dependency constraints |
 
 ## The Iron Rules
@@ -112,6 +113,20 @@ which is what the measurable SaaS mix shift (32% → 39% of average ARR) mechani
 Finding out that your disagreement is about revenue recognition rather than about the business
 is the normal outcome in this category. Step 7c of the example shows the arithmetic that
 surfaces it.
+
+## Forecast records
+
+`forecasts/` holds dated forecasts produced with this method, each paired with the script that
+generates it. The convention exists because Iron Rule #2 is only enforceable if forecasts are
+written down before they resolve: a record with a fixed timestamp, an assumption register, and a
+named benchmark can be scored later, whereas a recollection cannot.
+
+| Forecast | Recorded | Resolves |
+|---|---|---|
+| [Commvault Q1 FY2027](./forecasts/2026-07-28-commvault-q1-fy2027.md) | 2026-07-28, pre-release | 2026-07-28 |
+
+When a forecast resolves, score it (CRPS or pinball against the stated benchmark), record the
+realization, and refit the relevant distribution rather than defending the original call.
 
 ## Using it as an agent skill
 
