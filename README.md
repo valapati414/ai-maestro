@@ -121,9 +121,9 @@ generates it. The convention exists because Iron Rule #2 is only enforceable if 
 written down before they resolve: a record with a fixed timestamp, an assumption register, and a
 named benchmark can be scored later, whereas a recollection cannot.
 
-| Forecast | Recorded | Resolves |
-|---|---|---|
-| [Commvault Q1 FY2027](./forecasts/2026-07-28-commvault-q1-fy2027.md) | 2026-07-28, pre-release | 2026-07-28 |
+| Forecast | Recorded | Resolves | Score |
+|---|---|---|---|
+| [Commvault Q1 FY2027](./forecasts/2026-07-28-commvault-q1-fy2027.md) | 2026-07-28, pre-release | 2026-07-28 | [**+$2.1M / +6.6% skill**](./forecasts/2026-07-28-commvault-q1-fy2027-scored.md) |
 
 When a forecast resolves, score it (CRPS or pinball against the stated benchmark), record the
 realization, and refit the relevant distribution rather than defending the original call.
